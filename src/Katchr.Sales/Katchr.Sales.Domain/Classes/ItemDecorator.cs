@@ -40,7 +40,6 @@ public abstract class ItemDecorator(IItem item) : IItem
         }
     }
 
-
     public ItemDef ItemDef
     {
         get
@@ -49,8 +48,32 @@ public abstract class ItemDecorator(IItem item) : IItem
         }
     }
 
-    public virtual decimal GetTaxRate()
+    public decimal TaxRate
     {
-        return item.GetTaxRate();
+        get
+        {
+            return item.TaxRate;
+        }
+        set
+        {
+            item.TaxRate = value; 
+        }
     }
+
+    public decimal PriceIncTax
+    {
+        get
+        {
+            return item.PriceIncTax;
+        }
+    }
+
+    public decimal Tax
+    {
+        get
+        {
+            return item.Tax;
+        }
+    }
+
 }

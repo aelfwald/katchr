@@ -1,10 +1,10 @@
 ﻿namespace Katchr.Sales
 {
-    public class BasicTaxExcemptItem(IItem item) : ItemDecorator(item)
+    public class BasicTaxExcemptItem : ItemDecorator
     {
-        public override decimal GetTaxRate()
+        public BasicTaxExcemptItem(IItem item) : base (item)
         {
-            return 0.00M;
+            item.TaxRate = 0;
         }
-    }
+     }
 }

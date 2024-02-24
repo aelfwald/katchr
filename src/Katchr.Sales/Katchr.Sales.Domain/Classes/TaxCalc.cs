@@ -1,11 +1,11 @@
-﻿namespace Katchr.Sales
+﻿namespace Katchr.Sales;
+
+public class TaxCalc
 {
-    public class TaxCalc
+
+    public decimal Calc(decimal price, decimal taxRate)
     {
-        public decimal Calc(decimal price, decimal taxRate)
-        {
-            decimal np = taxRate * price;
-            return Math.Ceiling((np / 100) * 20) / 20;
-        }
+        decimal np = taxRate * price;
+        return Math.Ceiling((np / 100) * 20) / 20;
     }
 }

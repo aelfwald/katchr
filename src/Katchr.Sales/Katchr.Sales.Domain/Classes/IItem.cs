@@ -11,6 +11,11 @@ public interface IItem
 
     decimal Price { get; }
 
-    bool IsImported { get; set; }
-    decimal GetTaxRate();
+    decimal Tax { get; }
+
+    decimal PriceIncTax { get; }
+
+    bool IsImported { get; internal set; }
+
+    decimal TaxRate { get; internal set; }
 }

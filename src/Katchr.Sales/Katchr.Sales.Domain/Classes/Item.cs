@@ -2,14 +2,18 @@
 
 public class Item: IItem
 {
+    private decimal? _tax = null;
+
     public Item(
         int quantity,
         decimal price,
-        ItemDef itemDef)
+        ItemDef itemDef,
+        TaxCalc taxCalc)
     {
         Quantity = quantity;
         Price = price;  
         ItemDef = itemDef;
+        TaxCalc = taxCalc;  
     }
 
     public int Quantity 
@@ -40,9 +44,38 @@ public class Item: IItem
     {
         get;
     }
-
-    public decimal GetTaxRate()
+    
+    public decimal TaxRate
     {
-        return 10.00M;
+        get;
+        set;
+    } = 10.00M;
+
+    public decimal Tax
+    {
+        get
+        {
+            if (!_tax.HasValue)
+            {
+                _tax = TaxCalc.Calc(Price, TaxRate);
+            }
+
+            return _tax.Value;
+
+        }
+    }
+
+    public decimal PriceIncTax
+    {
+        get
+        {
+            return Price + Tax;
+        }
+    }
+
+    internal TaxCalc TaxCalc
+    {
+        get;
+        set;
     }
 }

@@ -1,8 +1,4 @@
-﻿
-
-using Katchr.Sales;
-
-namespace Katchr.Sales;
+﻿namespace Katchr.Sales;
 
 public class ItemDefRepository : IItemDefRepository
 {
@@ -12,13 +8,13 @@ public class ItemDefRepository : IItemDefRepository
         new()
         {
             Name = "book",
-            Aliases = [ "Book"],
+            Aliases = [],
             ItemType = ItemType.Book
         },
         new()
         {
             Name = "music CD",
-            Aliases = [ "music cd"],
+            Aliases = [],
             ItemType = ItemType.Misc
         },
         new()
@@ -55,6 +51,10 @@ public class ItemDefRepository : IItemDefRepository
 
     public ItemDef GetItemDefByName(string name)
     {
-        return _itemDefs.First( i => i.Name == name.ToLower().Trim() || i.Aliases.Contains(name.ToLower().Trim()));
+       
+        return _itemDefs.First(
+                i =>
+                     string.Equals(i.Name, name.Trim(),  StringComparison.OrdinalIgnoreCase)
+                     || i.Aliases.Contains(name.ToLower().Trim()));
     }
 }

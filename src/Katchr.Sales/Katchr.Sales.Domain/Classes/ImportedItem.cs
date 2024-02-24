@@ -1,15 +1,10 @@
-﻿namespace Katchr.Sales
-{
-    public class ImportedItem : ItemDecorator
-    {
-        public ImportedItem(IItem item) : base(item)
-        {
-            item.IsImported = true;
-        }
+﻿namespace Katchr.Sales;
 
-        public override decimal GetTaxRate()
-        {
-            return item.GetTaxRate() + 5.00M;
-        }
+public class ImportedItem : ItemDecorator
+{
+    public ImportedItem(IItem item) : base(item)
+    {
+        item.TaxRate += 5.00M;
+        item.IsImported = true;
     }
 }

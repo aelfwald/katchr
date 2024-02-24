@@ -22,7 +22,8 @@ public class BasketBuilder(
             IItem item = new Item(
                 inputItem.Quantity,
                 inputItem.Price,
-                itemDef);
+                itemDef,
+                new TaxCalc());
 
             if (_taxExcemptChecker.IsExcempt(item.ItemDef.ItemType))
             {
