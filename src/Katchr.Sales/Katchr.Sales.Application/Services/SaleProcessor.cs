@@ -2,6 +2,9 @@
 
 namespace Katchr.Sales;
 
+/// <summary>
+/// Service that marshals the processing of a sale.
+/// </summary>
 public class SaleProcessor(
     BasketBuilder basketBuilder) : ISalesProcessor
 {

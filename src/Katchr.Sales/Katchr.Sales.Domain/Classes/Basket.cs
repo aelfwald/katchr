@@ -2,11 +2,13 @@
 
 namespace Katchr.Sales;
 
+/// <summary>
+/// A basket of sale items.
+/// </summary>
 public class Basket
 {
     private readonly List<IItem> _items = [];
-    private readonly TaxCalc _taxCalc = new();
-    
+
     public void AddItem(IItem item)
     {
         _items.Add(item);
@@ -21,7 +23,6 @@ public class Basket
 
         foreach(IItem item in _items) 
         {
-
             sb.AppendLine(@$"{item.Quantity} {item.Name}: {(item.PriceIncTax).ToString("N2")}");
 
             saleTax += item.Tax;

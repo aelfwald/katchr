@@ -1,6 +1,9 @@
 ﻿
 namespace Katchr.Sales;
 
+/// <summary>
+/// Defines a sale item.
+/// </summary>
 public interface IItem
 {
     int Quantity { get; }

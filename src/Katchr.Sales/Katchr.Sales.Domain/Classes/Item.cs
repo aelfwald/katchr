@@ -1,5 +1,8 @@
 ﻿namespace Katchr.Sales;
 
+/// <summary>
+/// Defines sale item at the basic tax rate.
+/// </summary>
 public class Item: IItem
 {
     private decimal? _tax = null;

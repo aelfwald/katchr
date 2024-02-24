@@ -1,5 +1,8 @@
 ﻿namespace Katchr.Sales
 {
+    /// <summary>
+    /// Holds input to the sale processed that has been parsed.
+    /// </summary>
     public class InputItem
     {
         public int Quantity 

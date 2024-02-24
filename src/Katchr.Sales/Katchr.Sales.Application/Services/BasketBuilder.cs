@@ -1,5 +1,9 @@
 ﻿namespace Katchr.Sales;
 
+/// <summary>
+/// A service that builds a sale basket based on the 
+/// input to parsed.
+/// </summary>
 public class BasketBuilder(
     IInputParser inputParser,
     ITaxExcemptChecker taxExcemptChecker,

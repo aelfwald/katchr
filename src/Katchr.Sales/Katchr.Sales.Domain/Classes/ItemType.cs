@@ -1,5 +1,8 @@
 ﻿namespace Katchr.Sales;
 
+/// <summary>
+/// The Item type
+/// </summary>
 public class ItemType
 {
     public static ItemType NotSet { get; } = new ItemType();

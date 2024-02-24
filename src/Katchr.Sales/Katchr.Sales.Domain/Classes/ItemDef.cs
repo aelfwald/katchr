@@ -1,5 +1,8 @@
 ﻿namespace Katchr.Sales;
 
+/// <summary>
+/// Item definition.
+/// </summary>
 public class ItemDef
 {
     public string Name 
@@ -12,8 +15,7 @@ public class ItemDef
     {
         get;
         set;
-    } = new HashSet<string>();
-
+    } = [];
 
     public ItemType ItemType
     {

@@ -1,5 +1,9 @@
 ﻿namespace Katchr.Sales;
 
+/// <summary>
+/// A repository for the <see cref="ItemDef"/>
+/// Returns dummy data.
+/// </summary>
 public class ItemDefRepository : IItemDefRepository
 {
 

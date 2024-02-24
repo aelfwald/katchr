@@ -1,5 +1,8 @@
 ﻿namespace Katchr.Sales;
 
+/// <summary>
+/// Decorator for <see cref="IItem"/>
+/// </summary>
 public abstract class ItemDecorator(IItem item) : IItem
 {
     protected IItem item = item;

@@ -1,5 +1,9 @@
 ﻿namespace Katchr.Sales;
 
+
+/// <summary>
+/// A service that checks if an item type is excempt from tax.
+/// </summary>
 public class TaxExemptChecker : ITaxExcemptChecker
 {
 
