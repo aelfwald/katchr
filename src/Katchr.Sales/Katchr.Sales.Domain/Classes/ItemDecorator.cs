@@ -15,14 +15,6 @@ public abstract class ItemDecorator(Item item) : Item
         }
     }
 
-    public override string Name
-    {
-        get
-        {
-            return item.Name;
-        }
-    }
-
     public override decimal Price
     {
         get

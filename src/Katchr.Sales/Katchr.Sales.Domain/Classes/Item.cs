@@ -18,7 +18,7 @@ public abstract class Item
         protected set;
     }
 
-    public virtual string Name
+    public string Name
     {
         get
         {
