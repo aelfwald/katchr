@@ -1,7 +1,7 @@
 ﻿namespace Katchr.Sales;
 
 /// <summary>
-/// Defines an imported sale.
+/// Defines an imported sale item.
 /// </summary>
 public class ImportedItem(Item item) : ItemDecorator(item)
 {

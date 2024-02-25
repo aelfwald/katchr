@@ -25,7 +25,7 @@ public class SaleProcessor(
         {
             StringBuilder sb = new();
             sb.AppendLine("***********************************************");
-            sb.AppendLine($"ERROR PROCSSING SALE: {ex.Message}");
+            sb.AppendLine($"ERROR PROCESSING SALE: {ex.Message}");
             sb.AppendLine("***********************************************");
 
             receiptProvider.Print(sb.ToString());
