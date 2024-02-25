@@ -2,7 +2,7 @@
 {
     internal class ConsoleReceiptPrinter : IReceiptPrinter
     {
-        public void PrintReceipt(string receipt)
+        public void Print(string receipt)
         {
             Console.Write(receipt);
         }

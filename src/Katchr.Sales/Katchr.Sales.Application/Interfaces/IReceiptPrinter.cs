@@ -5,5 +5,5 @@
 /// </summary>
 public interface IReceiptPrinter
 {
-    void PrintReceipt(string receipt);
+    void Print(string receipt);
 }

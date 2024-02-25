@@ -1,5 +1,7 @@
 ﻿
 
+using System.Text;
+
 namespace Katchr.Sales;
 
 /// <summary>
@@ -14,8 +16,21 @@ public class SaleProcessor(
         string salesItems, 
         IReceiptPrinter receiptProvider)
     {
-        Basket basket = _basketBuilder.Build(salesItems);
-        receiptProvider.PrintReceipt(basket.GenerateReceipt());
+        try
+        {
+            Basket basket = _basketBuilder.Build(salesItems);
+            receiptProvider.Print(basket.GenerateReceipt());
+        }
+        catch(Exception ex) 
+        {
+            StringBuilder sb = new();
+            sb.AppendLine("***********************************************");
+            sb.AppendLine($"ERROR PROCSSING SALE: {ex.Message}");
+            sb.AppendLine("***********************************************");
+
+            receiptProvider.Print(sb.ToString());
+        }
+
     }
 
 }
