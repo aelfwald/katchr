@@ -3,11 +3,22 @@
 /// <summary>
 /// Defines an imported sale.
 /// </summary>
-public class ImportedItem : ItemDecorator
+public class ImportedItem(Item item) : ItemDecorator(item)
 {
-    public ImportedItem(IItem item) : base(item)
+    public override decimal TaxRate
     {
-        item.TaxRate += 5.00M;
-        item.IsImported = true;
+        get
+        {
+            return item.TaxRate + 5.00M;
+        }
     }
+
+    public override bool IsImported
+    {
+        get
+        {
+            return true;
+        }
+    }
+
 }

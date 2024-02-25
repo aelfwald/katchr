@@ -23,11 +23,10 @@ public class BasketBuilder(
 
             ItemDef itemDef = _itemDefRepository.GetItemDefByName(inputItem.Name);
 
-            IItem item = new Item(
+            Item item = new StandardItem(
                 inputItem.Quantity,
                 inputItem.Price,
-                itemDef,
-                new TaxCalc());
+                itemDef);
 
             if (_taxExcemptChecker.IsExempt(item.ItemDef.ItemType))
             {

@@ -7,9 +7,9 @@ namespace Katchr.Sales;
 /// </summary>
 public class Basket
 {
-    private readonly List<IItem> _items = [];
+    private readonly List<Item> _items = [];
 
-    public void AddItem(IItem item)
+    public void AddItem(Item item)
     {
         _items.Add(item);
     }
@@ -21,7 +21,7 @@ public class Basket
         decimal priceTotal = 0;
         decimal saleTax = 0;
 
-        foreach(IItem item in _items) 
+        foreach(Item item in _items) 
         {
             sb.AppendLine(@$"{item.Quantity} {item.Name}: {(item.PriceIncTax).ToString("N2")}");
 

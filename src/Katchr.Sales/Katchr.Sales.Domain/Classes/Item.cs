@@ -1,70 +1,59 @@
 ﻿namespace Katchr.Sales;
 
 /// <summary>
-/// Defines sale item at the basic tax rate.
+/// Defines a sale item.
 /// </summary>
-public class Item: IItem
+public abstract class Item
 {
     private decimal? _tax = null;
 
-    public Item(
-        int quantity,
-        decimal price,
-        ItemDef itemDef,
-        TaxCalc taxCalc)
+    protected Item()
     {
-        Quantity = quantity;
-        Price = price;  
-        ItemDef = itemDef;
-        TaxCalc = taxCalc;  
+        ItemDef = new ItemDef();
     }
 
-    public int Quantity 
-    { 
-        get; 
+    public virtual int Quantity
+    {
+        get;
+        protected set;
     }
 
-    public string Name
+    public virtual string Name
     {
         get
         {
-            return  $"{(IsImported ? "imported " : "")}{this.ItemDef.Name}";
+            return $"{(IsImported ? "imported " : "")}{this.ItemDef.Name}";
         }
     }
 
-    public decimal Price 
-    { 
-        get; 
-    }
-
-    public bool IsImported 
-    { 
-        get; 
-        set; 
-    }
-
-    public ItemDef ItemDef
+    public virtual decimal Price
     {
         get;
+        protected set;
     }
-    
-    public decimal TaxRate
+
+    public virtual ItemDef ItemDef
     {
         get;
-        set;
-    } = 10.00M;
+        protected set;
+    }
 
-    public decimal Tax
+    protected decimal CalculateTax(decimal taxRate)
     {
+        decimal np = taxRate * Price;
+        return Math.Ceiling((np / 100) * 20) / 20;
+    }
+
+    public decimal Tax 
+    { 
         get
         {
             if (!_tax.HasValue)
             {
-                _tax = TaxCalc.Calc(Price, TaxRate);
+                _tax = CalculateTax(TaxRate);
             }
 
             return _tax.Value;
-
         }
     }
 
@@ -76,9 +65,8 @@ public class Item: IItem
         }
     }
 
-    internal TaxCalc TaxCalc
-    {
-        get;
-        set;
-    }
+    public abstract decimal TaxRate { get; }
+
+    public abstract bool IsImported { get; }
+
 }

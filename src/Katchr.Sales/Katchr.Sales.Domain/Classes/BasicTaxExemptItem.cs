@@ -3,10 +3,21 @@
 /// <summary>
 /// Define a basic tax exempt sale item
 /// </summary>
-public class BasicTaxExemptItem : ItemDecorator
+public class BasicTaxExemptItem(Item item) : ItemDecorator(item)
 {
-    public BasicTaxExemptItem(IItem item) : base (item)
+    public override decimal TaxRate
     {
-        item.TaxRate = 0;
+        get
+        {
+            return 0.00M;
+        }
     }
- }
+
+    public override bool IsImported
+    {
+        get
+        {
+            return item.IsImported;
+        }
+    }
+}

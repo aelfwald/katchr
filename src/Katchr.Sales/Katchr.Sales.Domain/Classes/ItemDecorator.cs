@@ -1,13 +1,13 @@
 ﻿namespace Katchr.Sales;
 
 /// <summary>
-/// Decorator for <see cref="IItem"/>
+/// Decorator for <see cref="Item"/>
 /// </summary>
-public abstract class ItemDecorator(IItem item) : IItem
+public abstract class ItemDecorator(Item item) : Item
 {
-    protected IItem item = item;
+    protected Item item = item;
 
-    public int Quantity
+    public override int Quantity
     {
         get
         {
@@ -15,7 +15,7 @@ public abstract class ItemDecorator(IItem item) : IItem
         }
     }
 
-    public string Name
+    public override string Name
     {
         get
         {
@@ -23,7 +23,7 @@ public abstract class ItemDecorator(IItem item) : IItem
         }
     }
 
-    public decimal Price
+    public override decimal Price
     {
         get
         {
@@ -31,19 +31,7 @@ public abstract class ItemDecorator(IItem item) : IItem
         }
     }
 
-    public bool IsImported
-    {
-        get
-        {
-            return item.IsImported;
-        }
-        set
-        {
-            item.IsImported = value;
-        }
-    }
-
-    public ItemDef ItemDef
+    public override ItemDef ItemDef
     {
         get
         {
@@ -51,32 +39,8 @@ public abstract class ItemDecorator(IItem item) : IItem
         }
     }
 
-    public decimal TaxRate
-    {
-        get
-        {
-            return item.TaxRate;
-        }
-        set
-        {
-            item.TaxRate = value; 
-        }
-    }
+    public override abstract decimal TaxRate { get; }
 
-    public decimal PriceIncTax
-    {
-        get
-        {
-            return item.PriceIncTax;
-        }
-    }
-
-    public decimal Tax
-    {
-        get
-        {
-            return item.Tax;
-        }
-    }
+    public override abstract bool IsImported { get; }
 
 }
