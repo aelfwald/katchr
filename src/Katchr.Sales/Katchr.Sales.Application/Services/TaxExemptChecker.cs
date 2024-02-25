@@ -2,20 +2,20 @@
 
 
 /// <summary>
-/// A service that checks if an item type is excempt from tax.
+/// A service that checks if an item type is exempt from tax.
 /// </summary>
-public class TaxExemptChecker : ITaxExcemptChecker
+public class TaxExemptChecker : ITaxExemptChecker
 {
 
-    private readonly HashSet<ItemType> _items =
+    private readonly HashSet<ItemType> _exemptTypes =
         [
             ItemType.Medical,
             ItemType.Book,
             ItemType.Food
         ];
 
-    public bool IsExcempt(ItemType itemType)
+    public bool IsExempt(ItemType itemType)
     {
-        return _items.Contains(itemType);
+        return _exemptTypes.Contains(itemType);
     }
 }

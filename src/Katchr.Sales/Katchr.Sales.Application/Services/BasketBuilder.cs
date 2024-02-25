@@ -6,12 +6,12 @@
 /// </summary>
 public class BasketBuilder(
     IInputParser inputParser,
-    ITaxExcemptChecker taxExcemptChecker,
+    ITaxExemptChecker taxExemptChecker,
     IItemDefRepository itemDefRepository)
 {
 
     private readonly IInputParser _inputParser = inputParser;
-    private readonly ITaxExcemptChecker _taxExcemptChecker = taxExcemptChecker;
+    private readonly ITaxExemptChecker _taxExcemptChecker = taxExemptChecker;
     private readonly IItemDefRepository _itemDefRepository = itemDefRepository;
 
     public Basket Build(string input)
@@ -29,9 +29,9 @@ public class BasketBuilder(
                 itemDef,
                 new TaxCalc());
 
-            if (_taxExcemptChecker.IsExcempt(item.ItemDef.ItemType))
+            if (_taxExcemptChecker.IsExempt(item.ItemDef.ItemType))
             {
-                item = new BasicTaxExcemptItem(item);
+                item = new BasicTaxExemptItem(item);
             }
 
             if (inputItem.IsImported)

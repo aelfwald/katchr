@@ -44,13 +44,7 @@ public class ItemDefRepository : IItemDefRepository
             Name = "packet of headache pills",
             Aliases = [ "packet of paracetamol" ],
             ItemType = ItemType.Medical
-        },
-        new()
-        {
-            Name = "bottle of perfume",
-            Aliases = [ "packet of paracetamol" ],
-            ItemType = ItemType.Misc
-        },
+        }
     ];
 
     public ItemDef GetItemDefByName(string name)
