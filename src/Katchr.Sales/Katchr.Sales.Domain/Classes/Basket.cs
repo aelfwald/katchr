@@ -23,9 +23,9 @@ public class Basket
 
         foreach(Item item in _items) 
         {
-            sb.AppendLine(@$"{item.Quantity} {item.Name}: {(item.PriceIncTax).ToString("N2")}");
+            sb.AppendLine(@$"{item.Quantity} {item.Name}: {(item.SalePrice).ToString("N2")}");
 
-            saleTax += item.Tax;
+            saleTax += item.SaleTax;
             priceTotal += item.Price;
         }
 

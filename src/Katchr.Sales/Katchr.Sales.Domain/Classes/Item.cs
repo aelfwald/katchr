@@ -44,8 +44,16 @@ public abstract class Item
         return Math.Ceiling((np / 100) * 20) / 20;
     }
 
-    public decimal Tax 
+    public decimal SaleTax 
     { 
+        get
+        {
+            return ItemTax * Quantity;
+        }
+    }
+
+    internal decimal ItemTax
+    {
         get
         {
             if (!_tax.HasValue)
@@ -57,11 +65,11 @@ public abstract class Item
         }
     }
 
-    public decimal PriceIncTax
+    public decimal SalePrice
     {
         get
         {
-            return Price + Tax;
+            return (Price + ItemTax) * Quantity;
         }
     }
 
