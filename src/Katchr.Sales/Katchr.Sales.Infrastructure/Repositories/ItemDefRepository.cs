@@ -7,52 +7,76 @@
 public class ItemDefRepository : IItemDefRepository
 {
 
-    private readonly List<ItemDef> _itemDefs =
-    [
-        new()
+    private Dictionary<string, ItemDef>? _itemDefLookUpMock;
+
+    private static IEnumerable<ItemDef> TestData
+    {
+        get
         {
-            Name = "book",
-            Aliases = [],
-            ItemType = ItemType.Book
-        },
-        new()
-        {
-            Name = "music CD",
-            Aliases = [],
-            ItemType = ItemType.Misc
-        },
-        new()
-        {
-            Name = "chocolate bar",
-            Aliases = [ "chocolate bar" ],
-            ItemType = ItemType.Food
-        },
-        new()
-        {
-            Name = "box of chocolates",
-            Aliases = [ "box of imported chocolates", "imported box of chocolates" ],
-            ItemType = ItemType.Food
-        },
-        new()
-        {
-            Name = "bottle of perfume",
-            Aliases = [ "imported bottle of perfume" ],
-            ItemType = ItemType.Misc
-        },
-        new()
-        {
-            Name = "packet of headache pills",
-            Aliases = [ "packet of paracetamol" ],
-            ItemType = ItemType.Medical
+
+            yield return new ItemDef()
+            {
+                Name = "book",
+                Aliases = [],
+                ItemType = ItemType.Book
+            };
+            yield return new ItemDef()
+            {
+                Name = "music CD",
+                Aliases = [],
+                ItemType = ItemType.Misc
+            };
+            yield return new ItemDef()
+            {
+                Name = "chocolate bar",
+                Aliases = [],
+                ItemType = ItemType.Food
+            };
+            yield return new ItemDef()
+            {
+                Name = "box of chocolates",
+                Aliases = ["box of imported chocolates", "imported box of chocolates"],
+                ItemType = ItemType.Food
+            };
+            yield return new ItemDef()
+            {
+                Name = "bottle of perfume",
+                Aliases = ["imported bottle of perfume"],
+                ItemType = ItemType.Misc
+            };
+            yield return new ItemDef()
+            {
+                Name = "packet of headache pills",
+                Aliases = ["packet of paracetamol"],
+                ItemType = ItemType.Medical
+            };
+
         }
-    ];
+    }
+
+    public void InitItemDefLookUpMock()
+    {
+        if(_itemDefLookUpMock != null)
+        {
+            return;
+        }
+
+        _itemDefLookUpMock = [];
+
+        foreach (ItemDef itemDef in TestData) 
+        { 
+            _itemDefLookUpMock.Add(itemDef.Name.ToLower(), itemDef);
+
+            foreach (string alias in itemDef.Aliases)
+            {
+                _itemDefLookUpMock.Add(alias.ToLower(), itemDef);
+            }
+        }
+    }
 
     public ItemDef GetItemDefByName(string name)
     {
-       
-        return _itemDefs.First(
-                i =>
-                     string.Equals(i.Name, name.Trim(),  StringComparison.OrdinalIgnoreCase)
-                     || i.Aliases.Contains(name.ToLower().Trim()));
+        InitItemDefLookUpMock();
+        return _itemDefLookUpMock![name.ToLower().Trim()];
     }
 }
